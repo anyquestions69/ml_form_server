@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const multer = require('multer')
+require('dotenv').config()
 const PORT = process.env.PORT || 80
 const path = require('path');
 const {spawn} = require('child_process');
@@ -35,7 +36,8 @@ app.get('/', (req,res)=>{
 app.post('/upload',(req,res)=>{
     console.log(req.file)
     if(req.file){
-        const python = spawn('python3', ['Programmer.py', 'newlist.xls']); // const python = spawn('python3', ['Programmer.py', 'files/'+req.file.filename]);
+        const python = spawn('python3', ['Programmer.py', 'newlist.xlsx']);
+        // const python = spawn('python3', ['Programmer.py', 'files/'+req.file.filename]);
         python.stdout.on('data', function (data) {
         dataToSend = data.toString();
         });
