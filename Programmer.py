@@ -25,7 +25,7 @@ new = data_1
 new['predict'] = a
 ip_s = list(new[new['predict'] == 1]['ip'])[0]
 print(ip_s)
-with open('/Users/public_hysteria/jsAdmin/api_marker/log.json') as f:
+with open('../api_marker/log.json') as f:
     logs = json.load(f)
 logs = pd.json_normalize(logs)
 for ip in ip_s:
