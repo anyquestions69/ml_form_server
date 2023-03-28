@@ -16,7 +16,7 @@ model = joblib.load("model.joblib")
 
 X = data.drop(['attack', 'ip', 'Unnamed: 0', 'Unnamed: 0.1'], axis=1)
 y = data.attack
-
+print(path)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 model.fit(X_train, y_train)
 data_1 = data_1.drop(['Unnamed: 0'], axis=1)

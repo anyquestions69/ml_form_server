@@ -36,10 +36,14 @@ app.get('/', (req,res)=>{
 app.post('/upload',(req,res)=>{
     console.log(req.file)
     if(req.file){
-        const python = spawn('python3', ['Programmer.py', 'newlist.xlsx']);
-        // const python = spawn('python3', ['Programmer.py', 'files/'+req.file.filename]);
+        //const python = spawn('python3', ['Programmer.py', 'newlist.xlsx']);
+        const python = spawn('python3', ['Programmer.py', 'files/'+req.file.filename]);
+        let dataToSend='error'
+        python.stdout.on('error', (err)=>{
+            dataToSend = err.toString();
+        })
         python.stdout.on('data', function (data) {
-        dataToSend = data.toString();
+            dataToSend = data.toString();
         });
         
         python.on('close', (code) => {
